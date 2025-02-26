@@ -35,10 +35,6 @@ const fetchData = async c => {
   return paramObj
 }
 
-async function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 app.get('/', async (c) => {
 
   const params = await fetchData(c)
@@ -280,9 +276,8 @@ app.post("/admin", authMiddleware, async c => {
     if(!key.startsWith("links-")) {
       await c.env.KV.put(key, value)
     }
-    await c.env.KV.put("links", JSON.stringify(links))
-    await delay(75)
   }
+  await c.env.KV.put("links", JSON.stringify(links))
   return c.redirect("/admin")
 }) 
 
