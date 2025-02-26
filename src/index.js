@@ -18,7 +18,7 @@ const authMiddleware = async (c, next) => {
     await next();
   } catch (err) {
     console.error(err)
-    return c.json({ error: "Expired or not valid token" }, 401);
+    return c.redirect("/login");
   }
 };
 
@@ -41,7 +41,6 @@ app.get('/', async (c) => {
   let links = []
   try{
     links = JSON.parse(params.links)
-    console.log(links)
   } catch(err) {
     console.log(err)
   }
@@ -159,6 +158,8 @@ app.post("/login", async (c) => {
     .digest()
     .toString("hex") 
 
+  
+
   if(hashedKvPw === hash && user === userKv){
     const payload = { user: userKv };
     const token = jwt.sign(payload, c.env.SECRET, { expiresIn: '2h' })
@@ -180,7 +181,6 @@ app.post("/login", async (c) => {
 app.get("/admin", authMiddleware, async (c) => {
 
   const params = await fetchData(c)
-  console.log(params)
   return c.html(`
     <html>
       <head>
@@ -270,7 +270,6 @@ app.post("/admin", authMiddleware, async c => {
     if (!acc[index]) {
       acc[index] = {}
     }
-    console.log(key, body[key])
     acc[index][field] = body[key]
     return acc
   }, [])

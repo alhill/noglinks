@@ -18,7 +18,10 @@
       "binding": "KV",
       "id": "2e7c1db8cf66400eb941b0768ce159c8" //nog-links
     }
-  ]
+  ],
+  "vars": {
+    "SECRET": "g73J!fj4902oSSf/w!gk4o?A"
+  }
   /**
    * Smart Placement
    * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
