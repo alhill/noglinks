@@ -35,6 +35,10 @@ const fetchData = async c => {
   return paramObj
 }
 
+async function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 app.get('/', async (c) => {
 
   const params = await fetchData(c)
@@ -158,8 +162,6 @@ app.post("/login", async (c) => {
     .digest()
     .toString("hex") 
 
-  
-
   if(hashedKvPw === hash && user === userKv){
     const payload = { user: userKv };
     const token = jwt.sign(payload, c.env.SECRET, { expiresIn: '2h' })
@@ -279,6 +281,7 @@ app.post("/admin", authMiddleware, async c => {
       await c.env.KV.put(key, value)
     }
     await c.env.KV.put("links", JSON.stringify(links))
+    delay(50)
   }
   return c.redirect("/admin")
 }) 
