@@ -121,7 +121,7 @@ app.get('/', async (c) => {
           ${ params.headerText ? `<h1>${params.headerText}</h1>`: ""}
           ${ params.headerDescription ? `<p>${params.headerDescription}</p>` : "" }
           <ul>
-            ${links.map(link => `<li class="link"><a href="${link.url}">${link.text}</a></li>`).join("")}
+            ${links.map(link => `<a href="${link.url}"><li class="link">${link.text}</li></a>`).join("")}
           </ul>
         </div>
       </body>
