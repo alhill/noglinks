@@ -4,12 +4,23 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "noglinks",
-  "main": "src/index.ts",
+  "main": "src/index.js",
   "compatibility_date": "2025-02-14",
   "observability": {
     "enabled": true
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "2e7c1db8cf66400eb941b0768ce159c8" //nog-links
+    }
+  ],
+  "vars": {
+    "SECRET": "2g984rgiojwrdfg902iw"
   }
   /**
    * Smart Placement
