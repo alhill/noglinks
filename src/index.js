@@ -281,7 +281,7 @@ app.post("/admin", authMiddleware, async c => {
       await c.env.KV.put(key, value)
     }
     await c.env.KV.put("links", JSON.stringify(links))
-    delay(50)
+    await delay(75)
   }
   return c.redirect("/admin")
 }) 
