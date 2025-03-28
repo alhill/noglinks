@@ -25,7 +25,7 @@ const authMiddleware = async (c, next) => {
 const fetchData = async c => {
   const paramList = [
     "headerText", "headerImg", "headerDescription", "links", "background", "seoTitle", "seoDescription", "seoKeywords",
-    "favicon", "linkStyle", "containerStyle", "headInsert"
+    "favicon", "linkStyle", "containerStyle", "headInsert", "extraCss"
   ]
   const paramObj = {}
   for (const param of paramList) {
@@ -46,7 +46,7 @@ app.get('/', async (c) => {
   }
 
   return c.html(`
-    <html>
+    <html lang="es">
       <head>
         <title>${params.seoTitle}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,15 +113,16 @@ app.get('/', async (c) => {
             object-fit: contain;
             object-position: center;
           }
+          ${params.extraCss}
         </style>
         ${params.headInsert}
       <body>
         <div class="container">
           ${ params.headerImg ? `<img src="${params.headerImg}" class="headerImg" />` : "" }
-          ${ params.headerText ? `<h1>${params.headerText}</h1>`: ""}
-          ${ params.headerDescription ? `<p>${params.headerDescription}</p>` : "" }
+          ${ params.headerText ? `<h1 class="title">${params.headerText}</h1>`: ""}
+          ${ params.headerDescription ? `<p class="description">${params.headerDescription}</p>` : "" }
           <ul>
-            ${links.map(link => `<a href="${link.url}"><li class="link">${link.text}</li></a>`).join("")}
+            ${links.map(link => `<a href="${link.url}" target="_blank" rel="noopener noreferrer"><li class="link">${link.text}</li></a>`).join("")}
           </ul>
         </div>
       </body>
@@ -131,7 +132,7 @@ app.get('/', async (c) => {
 
 app.get("/login", c => {
   return c.html(`
-    <html>
+    <html lang="es">
       <body>
         <form method="POST">
           <label htmlFor="username" />
