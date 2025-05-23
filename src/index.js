@@ -54,7 +54,7 @@ app.get('/', async (c) => {
         <meta name="description" content="${params.seoDescription}">
         <meta name="keywords" content="${params.seoKeywords}">
         <meta name="author" content="Srta.Nognog">
-        <meta property='og:title' content="${params.seoTitle} />
+        <meta property='og:title' content="${params.seoTitle}" />
         <meta property='og:description' content="${params.seoDescription}" />
         <meta property='og:image' content="${params.headerImg}" />
         <meta property='og:url' content="https://links.srtanognog.com" />
